@@ -1,24 +1,24 @@
 #include <stdio.h>
-int voda = 20000;
+int *voda = 20000;
 int coffe = 10000;
 int moloko = 5000;
 int chocolad = 2000;
 int beznal = 0;
 int money = 0;
 int vmoney = 0;
-void ecspresso(int voda, int coffe);
-void copuchino(int voda, int coffe, int moloko);
-void doppio(int voda, int coffe);
-void americano(int voda, int coffe);
-void lungo(int voda, int coffe);
-void latte(int voda, int coffe, int moloko);
-void cacao(int voda, int chocolad);
-void scrt_menu(int voda, int coffe, int moloko, int chocolad, int money,
-               int beznal);
+void ecspresso(int *voda, int *coffe);
+void copuchino(int *voda, int *coffe, int *moloko);
+void doppio(int *voda, int *coffe);
+void americano(int *voda, int *coffe);
+void lungo(int *voda, int *coffe);
+void latte(int *voda, int *coffe, int *moloko);
+void cacao(int *voda, int *chocolad);
+void scrt_menu(int *voda, int *coffe, int *moloko, int *chocolad, int *money,
+               int *beznal);
 void menu();
-void oplata(int vmoney, int bezmal, int money);
-void beznaling(int vmoney, int beznal);
-void nalichka(int vmoney, int money);
+void oplata(int vmoney, int *bezmal, int *money);
+void beznaling(int vmoney, int *beznal);
+void nalichka(int vmoney, int *money);
 int main(void)
 {
     puts("хай \n Выбери кофе на свой вкус\n У нас есть:\n 1.Экспрессо 50руб.\n "
@@ -28,10 +28,12 @@ int main(void)
 }
 void menu()
 {
+    printf("%d_%d_%d_%d", voda, money, beznal, vmoney);
     int b = 0;
     setbuf(stdin, NULL);
     scanf("%d", &b);
     printf("Вы выбрали %d", b);
+    setbuf(stdin, NULL);
     switch (b) {
     case 1:
         ecspresso(voda, coffe);
@@ -57,10 +59,12 @@ void menu()
     case 9:
         scrt_menu(voda, coffe, moloko, chocolad, money, beznal);
         break;
+    case 0:
+        break;
     }
 }
 
-void ecspresso(int voda, int coffe)
+void ecspresso(int *voda, int *coffe)
 {
     int vmoney = 50;
     if (voda >= 100 && coffe >= 25) {
@@ -73,7 +77,7 @@ void ecspresso(int voda, int coffe)
         puts("На этот вариант нет ресурсов");
     }
 }
-void copuchino(int voda, int coffe, int moloko)
+void copuchino(int *voda, int *coffe, int *moloko)
 {
     int vmoney = 200;
     if (voda >= 100 && coffe >= 25 && moloko >= 50) {
@@ -87,7 +91,7 @@ void copuchino(int voda, int coffe, int moloko)
         puts("На этот вариант нет ресурсов");
     }
 }
-void doppio(int voda, int coffe)
+void doppio(int *voda, int *coffe)
 {
     int vmoney = 100;
     if (voda >= 200 && coffe >= 50) {
@@ -100,7 +104,7 @@ void doppio(int voda, int coffe)
         puts("На этот вариант нет ресурсов");
     }
 }
-void americano(int voda, int coffe)
+void americano(int *voda, int *coffe)
 {
     int vmoney = 150;
     if (voda >= 250 && coffe >= 25) {
@@ -113,7 +117,7 @@ void americano(int voda, int coffe)
         puts("На этот вариант нет ресурсов");
     }
 }
-void lungo(int voda, int coffe)
+void lungo(int *voda, int *coffe)
 {
     int vmoney = 50;
     if (voda >= 100 && coffe >= 25) {
@@ -126,7 +130,7 @@ void lungo(int voda, int coffe)
         puts("На этот вариант нет ресурсов");
     }
 }
-void latte(int voda, int coffe, int moloko)
+void latte(int *voda, int *coffe, int *moloko)
 {
     int vmoney = 200;
     if (voda >= 100 && coffe >= 25 && moloko >= 100) {
@@ -140,7 +144,7 @@ void latte(int voda, int coffe, int moloko)
         puts("На этот вариант нет ресурсов");
     }
 }
-void cacao(int voda, int chocolad)
+void cacao(int *voda, int *chocolad)
 {
     int vmoney = 150;
     if (voda >= 200 && chocolad >= 50) {
@@ -153,7 +157,7 @@ void cacao(int voda, int chocolad)
         puts("На этот вариант нет ресурсов");
     }
 }
-void oplata(int vmoney, int bezmal, int money)
+void oplata(int vmoney, int *bezmal, int *money)
 {
     setbuf(stdin, NULL);
     puts("Выберите способ оплаты\n 1.Безнал\n 2.Наличные");
@@ -169,32 +173,35 @@ void oplata(int vmoney, int bezmal, int money)
         break;
     }
 }
-void nalichka(int vmoney, int money)
+void nalichka(int vmoney, int *money)
 {
-    int nal, h, vrem;
-    if (h == 0) {
+    int nal = 0, h = 0, vrem = 0;
+    for (; h != 1;) {
+
         setbuf(stdin, NULL);
         puts("Ваша сумма");
         scanf("%d", &nal);
         vrem += nal;
-        if (vrem >= vmoney)
+        if (vrem >= vmoney) {
             if (vmoney - vrem == 0) {
                 h++;
             } else {
                 printf("Ваша сдача %d", vrem - vmoney);
                 h++;
             }
-    } else {
-        puts("Не достаточно средств, пополните ещё %d");
+        } else {
+            printf("Не достаточно средств, пополните ещё %d", vmoney - vrem);
+        }
     }
 }
-void beznaling(int vmoney, int beznal)
+void beznaling(int vmoney, int *beznal)
 {
     puts("Оплатите картой");
     beznal += vmoney;
     return;
 }
-void scrt_menu(int voda, int coffe, int moloko, int chocolad, int money,
-               int beznal)
+void scrt_menu(int *voda, int *coffe, int *moloko, int *chocolad, int *money,
+               int *beznal)
 {
+    printf("vau yi v shoke");
 }
