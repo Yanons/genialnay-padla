@@ -5,6 +5,14 @@ int moloko = 5000;
 int chocolad = 2000;
 int beznal = 0;
 int money = 0;
+int Des = 20;
+int pD = 20;
+int sS = 20;
+int dvS = 20;
+int pS = 5;
+int odT = 5;
+int dvT = 5;
+int peT = 0;
 void ecspresso();
 void copuchino();
 void doppio();
@@ -17,6 +25,8 @@ void menu();
 void oplata();
 void beznaling();
 void nalichka();
+void scheot();
+void razmen();
 int main(void) { menu(); }
 void menu()
 {
@@ -169,19 +179,82 @@ void nalichka(int vmoney)
         setbuf(stdin, NULL);
         puts("Ваша сумма\n");
         scanf("%d", &nal);
+        scheot(nal);
         if (nal >= vmoney) {
             if (vmoney - nal == 0) {
                 h++;
                 money += nal;
             } else {
-                // printf("%d%d%d", zdacha, nal, *vmoney);
                 printf("Ваша сдача %d\n", nal - vmoney);
                 h++;
                 nal -= nal - vmoney;
                 money += nal;
+                razmen(nal - vmoney);
             }
         } else {
             printf("Не достаточно средств, пополните ещё %d\n", vmoney - nal);
+        }
+    }
+}
+void razmen(int zdacha)
+{
+    for (int j = 0; j != 1;) {
+        if (zdacha == 5000) {
+        } else if (zdacha >= 2000) {
+            zdacha -= 2000;
+            dvT -= 1;
+        } else if (zdacha >= 1000) {
+            zdacha -= 1000;
+            sS -= 1;
+        } else if (zdacha >= 500) {
+            zdacha -= 500;
+            pS -= 1;
+        } else if (zdacha >= 200) {
+            zdacha -= 200;
+            dvS -= 1;
+        } else if (zdacha >= 100) {
+            zdacha -= 100;
+            dvS -= 1;
+        } else if (zdacha >= 50) {
+            zdacha -= 50;
+            pD -= 1;
+        } else if (zdacha >= 10) {
+            zdacha -= 10;
+            Des -= 1;
+        } else if (zdacha == 0) {
+            j++;
+        }
+    }
+}
+void scheot(int kupuri)
+{
+    for (int j = 0; j != 1;) {
+        if (kupuri == 0) {
+            j++;
+        } else if (kupuri <= 10) {
+            kupuri -= 10;
+            Des += 1;
+        } else if (kupuri <= 50) {
+            kupuri -= 50;
+            pD += 1;
+        } else if (kupuri <= 100) {
+            kupuri -= 100;
+            sS += 1;
+        } else if (kupuri <= 200) {
+            kupuri -= 200;
+            dvS += 1;
+        } else if (kupuri <= 500) {
+            kupuri -= 500;
+            pS += 1;
+        } else if (kupuri <= 1000) {
+            kupuri -= 1000;
+            odT += 1;
+        } else if (kupuri <= 2000) {
+            kupuri -= 2000;
+            dvT += 1;
+        } else if (kupuri <= 5000) {
+            kupuri -= 5000;
+            peT += 1;
         }
     }
 }
@@ -194,7 +267,9 @@ void beznaling(int vmoney)
 }
 void scrt_menu()
 {
+    int aka = 0;
     int vp = 0;
+    char d;
     puts(
         "Вы оказалиьс в панели разработчика!!!\n1.Данные по бакам\n2.Провести "
         "замену баков\n3.Режим инкасации\n4.Накатить винду\n5.Выйти из тулс\n");
@@ -243,29 +318,76 @@ void scrt_menu()
         }
         break;
     case 3:
-        int d = 0;
         puts("Режим инкасации\n1.Вывести наличные\n2.Внести "
              "наличные\n3.Выйти\n");
         setbuf(stdin, NULL);
         scanf("%d", &vp);
         switch (vp) {
         case 1:
-            printf("Наличные:%d\nСколько вывести?\n", money);
+            printf(
+                "Наличные:%d\nКупюры\n| 10 |:%d---| 50 |:%d---| 100 |:%d---| "
+                "200 |:%d\n| 500 "
+                "|:%d---|1000|:%d---|2000|:%d---|5000|:%d\nВывести всё?\n",
+                money, Des, pD, sS, dvS, pS, odT, dvT, peT);
             setbuf(stdin, NULL);
-            scanf("%d", &d);
-            if (d > money) {
+            scanf("%c", &d);
+            if (d == 'y') {
                 money = 0;
+                Des = 0;
+                pD = 0;
+                sS = 0;
+                dvS = 0;
+                pS = 0;
+                odT = 0;
+                dvT = 0;
+                peT = 0;
+                scrt_menu();
             } else {
-                money -= d;
+                scrt_menu();
             }
-            scrt_menu();
             break;
         case 2:
-            int df = 0;
-            printf("Наличные:%d\nСколько внести?\n", money);
+            printf("Наличные:%d\nВнести?\n", money);
+            puts("| 10 |:\n");
             setbuf(stdin, NULL);
-            scanf("%d", &df);
-            money += df;
+            scanf("%d", &aka);
+            money += 10 * aka;
+            Des += aka;
+            puts("| 50 |:\n");
+            setbuf(stdin, NULL);
+            scanf("%d", &aka);
+            money += 50 * aka;
+            pD += aka;
+            puts("| 100 |:\n");
+            setbuf(stdin, NULL);
+            scanf("%d", &aka);
+            money += 100 * aka;
+            sS += aka;
+            puts("| 200 |:\n");
+            setbuf(stdin, NULL);
+            scanf("%d", &aka);
+            money += 200 * aka;
+            dvS += aka;
+            puts("| 500 |:\n");
+            setbuf(stdin, NULL);
+            scanf("%d", &aka);
+            money += 500 * aka;
+            pS += aka;
+            puts("|1000|:\n");
+            setbuf(stdin, NULL);
+            scanf("%d", &aka);
+            money += 1000 * aka;
+            odT += aka;
+            puts("|2000|:\n");
+            setbuf(stdin, NULL);
+            scanf("%d", &aka);
+            money += 2000 * aka;
+            dvT += aka;
+            puts("|5000|:\n");
+            setbuf(stdin, NULL);
+            scanf("%d", &aka);
+            money += 5000 * aka;
+            peT += aka;
             scrt_menu();
             break;
         case 3:
