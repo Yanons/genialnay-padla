@@ -61,9 +61,8 @@ void menu()
 
 void ecspresso()
 {
-    int vmoney = 50;
     if (voda >= 100 && coffe >= 25) {
-        oplata(vmoney);
+        oplata(50);
         voda -= 100;
         coffe -= 25;
         puts("Ваш заказ выполнен\n");
@@ -74,9 +73,8 @@ void ecspresso()
 }
 void copuchino()
 {
-    int vmoney = 200;
     if (voda >= 100 && coffe >= 25 && moloko >= 50) {
-        oplata(vmoney);
+        oplata(200);
         voda -= 100;
         coffe -= 25;
         moloko -= 50;
@@ -88,9 +86,8 @@ void copuchino()
 }
 void doppio()
 {
-    int vmoney = 100;
     if (voda >= 200 && coffe >= 50) {
-        oplata(vmoney);
+        oplata(100);
         voda -= 200;
         coffe -= 50;
         puts("Ваш заказ выполнен\n");
@@ -101,9 +98,8 @@ void doppio()
 }
 void americano()
 {
-    int vmoney = 150;
     if (voda >= 250 && coffe >= 25) {
-        oplata(vmoney);
+        oplata(150);
         voda -= 250;
         coffe -= 25;
         puts("Ваш заказ выполнен\n");
@@ -114,9 +110,8 @@ void americano()
 }
 void lungo()
 {
-    int vmoney = 50;
     if (voda >= 100 && coffe >= 25) {
-        oplata(vmoney);
+        oplata(50);
         voda -= 100;
         coffe -= 25;
         puts("Ваш заказ выполнен\n");
@@ -127,9 +122,8 @@ void lungo()
 }
 void latte()
 {
-    int vmoney = 200;
     if (voda >= 100 && coffe >= 25 && moloko >= 100) {
-        oplata(vmoney);
+        oplata(200);
         voda -= 100;
         coffe -= 25;
         moloko -= 100;
@@ -141,9 +135,8 @@ void latte()
 }
 void cacao()
 {
-    int vmoney = 150;
     if (voda >= 200 && chocolad >= 50) {
-        oplata(vmoney);
+        oplata(150);
         voda -= 200;
         chocolad -= 50;
         puts("Ваш заказ выполнен\n");
@@ -161,43 +154,42 @@ void oplata(int *vmoney)
     printf("Вы выбрали %d\n", b);
     switch (b) {
     case 1:
-        beznaling(&vmoney);
+        beznaling(vmoney);
         break;
     case 2:
-        nalichka(&vmoney);
+        nalichka(vmoney);
         break;
     }
 }
-void nalichka(int *vmoney)
+void nalichka(int vmoney)
 {
-    int nal = 0, h = 0, vrem = 0, zdacha = 0;
+    int nal = 0, h = 0;
     for (; h != 1;) {
 
         setbuf(stdin, NULL);
         puts("Ваша сумма\n");
         scanf("%d", &nal);
-        if (nal >= *vmoney) {
-            if (*vmoney - vrem == 0) {
+        if (nal >= vmoney) {
+            if (vmoney - nal == 0) {
                 h++;
                 money += nal;
             } else {
-                zdacha = nal - *vmoney;
                 // printf("%d%d%d", zdacha, nal, *vmoney);
-                printf("Ваша сдача %d\n", zdacha);
+                printf("Ваша сдача %d\n", nal - vmoney);
                 h++;
-                nal -= zdacha;
+                nal -= nal - vmoney;
                 money += nal;
             }
         } else {
-            printf("Не достаточно средств, пополните ещё %d\n", *vmoney - vrem);
+            printf("Не достаточно средств, пополните ещё %d\n", vmoney - nal);
         }
     }
 }
-void beznaling(int *vmoney)
+void beznaling(int vmoney)
 {
 
     puts("Оплатите картой\n");
-    beznal += *vmoney;
+    beznal += vmoney;
     return;
 }
 void scrt_menu()
