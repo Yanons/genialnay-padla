@@ -246,6 +246,8 @@ void scrt_menu(int *pVoda, int *pCoffe, int *pMoloko, int *pChocolad,
             puts("Наличные\n");
             setbuf(stdin, NULL);
             scanf("%d", &money);
+            puts("Задача выполнена");
+            scrt_menu(pVoda, pCoffe, pMoloko, pChocolad, pMoney, pBeznal);
             break;
         case 2:
             scrt_menu(pVoda, pCoffe, pMoloko, pChocolad, pMoney, pBeznal);
@@ -253,19 +255,22 @@ void scrt_menu(int *pVoda, int *pCoffe, int *pMoloko, int *pChocolad,
         }
         break;
     case 3:
+        int d = 0;
         puts("Режим инкасации\n1.Вывести наличные\n2.Внести "
              "наличные\n3.Выйти\n");
+        setbuf(stdin, NULL);
+        scanf("%d", &vp);
         switch (vp) {
         case 1:
-            int d = 0;
             printf("Наличные:%d\nСколько вывести?\n", money);
             setbuf(stdin, NULL);
             scanf("%d", &d);
             if (d > money) {
                 money = 0;
             } else {
-                money - d;
+                money -= d;
             }
+            scrt_menu(pVoda, pCoffe, pMoloko, pChocolad, pMoney, pBeznal);
             break;
         case 2:
             int df = 0;
@@ -273,6 +278,7 @@ void scrt_menu(int *pVoda, int *pCoffe, int *pMoloko, int *pChocolad,
             setbuf(stdin, NULL);
             scanf("%d", &df);
             money += df;
+            scrt_menu(pVoda, pCoffe, pMoloko, pChocolad, pMoney, pBeznal);
             break;
         case 3:
             scrt_menu(pVoda, pCoffe, pMoloko, pChocolad, pMoney, pBeznal);
