@@ -36,28 +36,28 @@ void menu()
     setbuf(stdin, NULL);
     switch (b) {
     case 1:
-        ecspresso(voda, coffe);
+        ecspresso(&voda, &coffe);
         break;
     case 2:
-        lungo(voda, coffe);
+        lungo(&voda, &coffe);
         break;
     case 3:
-        doppio(voda, coffe);
+        doppio(&voda, &coffe);
         break;
     case 4:
-        americano(voda, coffe);
+        americano(&voda, &coffe);
         break;
     case 5:
-        copuchino(voda, coffe, moloko);
+        copuchino(&voda, &coffe, &moloko);
         break;
     case 6:
-        latte(voda, coffe, moloko);
+        latte(&voda, &coffe, &moloko);
         break;
     case 7:
-        cacao(voda, chocolad);
+        cacao(&voda, &chocolad);
         break;
     case 9:
-        scrt_menu(voda, coffe, moloko, chocolad, money, beznal);
+        scrt_menu(&voda, &coffe, &moloko, &chocolad, &money, &beznal);
         break;
     case 0:
         break;
@@ -68,7 +68,7 @@ void ecspresso(int *pVoda, int *pCoffe)
 {
     int vmoney = 50;
     if (voda >= 100 && coffe >= 25) {
-        oplata(vmoney, beznal, money);
+        oplata(vmoney, &beznal, &money);
         voda -= 100;
         coffe -= 25;
         puts("Ваш заказ выполнен\n");
@@ -81,7 +81,7 @@ void copuchino(int *pVoda, int *pCoffe, int *pMoloko)
 {
     int vmoney = 200;
     if (voda >= 100 && coffe >= 25 && moloko >= 50) {
-        oplata(vmoney, beznal, money);
+        oplata(vmoney, &beznal, &money);
         voda -= 100;
         coffe -= 25;
         moloko -= 50;
@@ -95,7 +95,7 @@ void doppio(int *pVoda, int *pCoffe)
 {
     int vmoney = 100;
     if (voda >= 200 && coffe >= 50) {
-        oplata(vmoney, beznal, money);
+        oplata(vmoney, &beznal, &money);
         voda -= 200;
         coffe -= 50;
         puts("Ваш заказ выполнен\n");
@@ -108,7 +108,7 @@ void americano(int *pVoda, int *pCoffe)
 {
     int vmoney = 150;
     if (voda >= 250 && coffe >= 25) {
-        oplata(vmoney, beznal, money);
+        oplata(vmoney, &beznal, &money);
         voda -= 250;
         coffe -= 25;
         puts("Ваш заказ выполнен\n");
@@ -121,7 +121,7 @@ void lungo(int *pVoda, int *pCoffe)
 {
     int vmoney = 50;
     if (voda >= 100 && coffe >= 25) {
-        oplata(vmoney, beznal, money);
+        oplata(vmoney, &beznal, &money);
         voda -= 100;
         coffe -= 25;
         puts("Ваш заказ выполнен\n");
@@ -134,7 +134,7 @@ void latte(int *pVoda, int *pCoffe, int *pMoloko)
 {
     int vmoney = 200;
     if (voda >= 100 && coffe >= 25 && moloko >= 100) {
-        oplata(vmoney, beznal, money);
+        oplata(vmoney, &beznal, &money);
         voda -= 100;
         coffe -= 25;
         moloko -= 100;
@@ -148,7 +148,7 @@ void cacao(int *pVoda, int *pChocolad)
 {
     int vmoney = 150;
     if (voda >= 200 && chocolad >= 50) {
-        oplata(vmoney, beznal, money);
+        oplata(vmoney, &beznal, &money);
         voda -= 200;
         chocolad -= 50;
         puts("Ваш заказ выполнен\n");
@@ -166,10 +166,10 @@ void oplata(int vmoney, int *pBezmal, int *pMoney)
     printf("Вы выбрали %d\n", b);
     switch (b) {
     case 1:
-        beznaling(vmoney, beznal);
+        beznaling(vmoney, &beznal);
         break;
     case 2:
-        nalichka(vmoney, money);
+        nalichka(vmoney, &money);
         break;
     }
 }
@@ -232,19 +232,19 @@ void scrt_menu(int *pVoda, int *pCoffe, int *pMoloko, int *pChocolad,
         switch (vp) {
         case 1:
             puts("Вода\n");
-            etbuf(stdin, NULL);
+            setbuf(stdin, NULL);
             scanf("%d", &voda);
             puts("Коффе\n");
-            etbuf(stdin, NULL);
+            setbuf(stdin, NULL);
             scanf("%d", &coffe);
             puts("Молоко\n");
-            etbuf(stdin, NULL);
+            setbuf(stdin, NULL);
             scanf("%d", &moloko);
             puts("Какао\n");
-            etbuf(stdin, NULL);
+            setbuf(stdin, NULL);
             scanf("%d", &chocolad);
             puts("Наличные\n");
-            etbuf(stdin, NULL);
+            setbuf(stdin, NULL);
             scanf("%d", &money);
             break;
         case 2:
@@ -259,7 +259,7 @@ void scrt_menu(int *pVoda, int *pCoffe, int *pMoloko, int *pChocolad,
         case 1:
             int d = 0;
             printf("Наличные:%d\nСколько вывести?\n", money);
-            etbuf(stdin, NULL);
+            setbuf(stdin, NULL);
             scanf("%d", &d);
             if (d > money) {
                 money = 0;
@@ -270,7 +270,7 @@ void scrt_menu(int *pVoda, int *pCoffe, int *pMoloko, int *pChocolad,
         case 2:
             int df = 0;
             printf("Наличные:%d\nСколько внести?\n", money);
-            etbuf(stdin, NULL);
+            setbuf(stdin, NULL);
             scanf("%d", &df);
             money += df;
             break;
