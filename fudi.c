@@ -64,8 +64,10 @@ void menu()
     }
 }
 
+// unused parameter - pvoda, pcoffe
 void ecspresso(int *pVoda, int *pCoffe)
 {
+    // переменную можно не использовать
     int vmoney = 50;
     if (voda >= 100 && coffe >= 25) {
         oplata(vmoney, &beznal, &money);
@@ -77,8 +79,11 @@ void ecspresso(int *pVoda, int *pCoffe)
         puts("На этот вариант нет ресурсов\n");
     }
 }
+
+// unused parameter - pvoda, pcoffe, pmoloko
 void copuchino(int *pVoda, int *pCoffe, int *pMoloko)
 {
+    // переменную можно не использовать
     int vmoney = 200;
     if (voda >= 100 && coffe >= 25 && moloko >= 50) {
         oplata(vmoney, &beznal, &money);
@@ -91,8 +96,11 @@ void copuchino(int *pVoda, int *pCoffe, int *pMoloko)
         puts("На этот вариант нет ресурсов\n");
     }
 }
+
+// unused parameter - pvoda, pcoffe
 void doppio(int *pVoda, int *pCoffe)
 {
+    // переменную можно не использовать
     int vmoney = 100;
     if (voda >= 200 && coffe >= 50) {
         oplata(vmoney, &beznal, &money);
@@ -104,8 +112,11 @@ void doppio(int *pVoda, int *pCoffe)
         puts("На этот вариант нет ресурсов\n");
     }
 }
+
+// unused parameter - pvoda, pcoffe
 void americano(int *pVoda, int *pCoffe)
 {
+    // переменную можно не использовать
     int vmoney = 150;
     if (voda >= 250 && coffe >= 25) {
         oplata(vmoney, &beznal, &money);
@@ -117,8 +128,11 @@ void americano(int *pVoda, int *pCoffe)
         puts("На этот вариант нет ресурсов\n");
     }
 }
+
+// unused parameter - pvoda, pcoffe
 void lungo(int *pVoda, int *pCoffe)
 {
+    // переменную можно не использовать
     int vmoney = 50;
     if (voda >= 100 && coffe >= 25) {
         oplata(vmoney, &beznal, &money);
@@ -130,8 +144,11 @@ void lungo(int *pVoda, int *pCoffe)
         puts("На этот вариант нет ресурсов\n");
     }
 }
+
+// unused parameter - pvoda, pcoffe, pmoloko
 void latte(int *pVoda, int *pCoffe, int *pMoloko)
 {
+    // переменную можно не использовать
     int vmoney = 200;
     if (voda >= 100 && coffe >= 25 && moloko >= 100) {
         oplata(vmoney, &beznal, &money);
@@ -144,8 +161,11 @@ void latte(int *pVoda, int *pCoffe, int *pMoloko)
         puts("На этот вариант нет ресурсов\n");
     }
 }
+
+// unused parameter - pvoda, pchocolad
 void cacao(int *pVoda, int *pChocolad)
 {
+    // переменную можно не использовать
     int vmoney = 150;
     if (voda >= 200 && chocolad >= 50) {
         oplata(vmoney, &beznal, &money);
@@ -157,6 +177,8 @@ void cacao(int *pVoda, int *pChocolad)
         puts("На этот вариант нет ресурсов\n");
     }
 }
+
+// unused parameter - pbezmal, pmoney
 void oplata(int vmoney, int *pBezmal, int *pMoney)
 {
     setbuf(stdin, NULL);
@@ -173,8 +195,11 @@ void oplata(int vmoney, int *pBezmal, int *pMoney)
         break;
     }
 }
+
+// unused parameter - pMoney
 void nalichka(int vmoney, int *pMoney)
 {
+    // переменная zdacha не нужна
     int nal = 0, h = 0, vrem = 0, zdacha = 0;
     for (; h != 1;) {
 
@@ -198,12 +223,15 @@ void nalichka(int vmoney, int *pMoney)
         }
     }
 }
+
+// unused parameter - pBeznal
 void beznaling(int vmoney, int *pBeznal)
 {
     puts("Оплатите картой\n");
     beznal += vmoney;
     return;
 }
+
 void scrt_menu(int *pVoda, int *pCoffe, int *pMoloko, int *pChocolad,
                int *pMoney, int *pBeznal)
 {
@@ -255,6 +283,7 @@ void scrt_menu(int *pVoda, int *pCoffe, int *pMoloko, int *pChocolad,
         }
         break;
     case 3:
+        // переменную d объявить выше
         int d = 0;
         puts("Режим инкасации\n1.Вывести наличные\n2.Внести "
              "наличные\n3.Выйти\n");
@@ -273,6 +302,7 @@ void scrt_menu(int *pVoda, int *pCoffe, int *pMoloko, int *pChocolad,
             scrt_menu(pVoda, pCoffe, pMoloko, pChocolad, pMoney, pBeznal);
             break;
         case 2:
+            // переменную df объявить выше
             int df = 0;
             printf("Наличные:%d\nСколько внести?\n", money);
             setbuf(stdin, NULL);
