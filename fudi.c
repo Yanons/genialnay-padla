@@ -4,7 +4,7 @@ int coffe = 10000;
 int moloko = 5000;
 int chocolad = 2000;
 int beznal = 0;
-int money = 0;
+int money = 24700;
 int Des = 20;
 int pD = 20;
 int sS = 20;
@@ -27,45 +27,55 @@ void beznaling();
 void nalichka();
 void scheot();
 void razmen();
+void vozvrat();
+char vat();
 int main(void) { menu(); }
 void menu()
 {
-    puts("хай \n Выбери кофе на свой вкус\n У нас есть:\n 1.Экспрессо 50руб.\n "
-         "2.Лунго 50руб.\n 3.Доппио 100руб.\n 4.Американо 150руб.\n 5.Капучино "
-         "200руб.\n 6.Латте 200руб.\n 7.Какао 150руб.\n (Сделайте выбор)\n");
-    // printf("%d_%d_%d_%d", voda, coffe, beznal, money);
-    int b = 0;
-    setbuf(stdin, NULL);
-    scanf("%d", &b);
-    printf("Вы выбрали %d\n", b);
-    setbuf(stdin, NULL);
-    switch (b) {
-    case 1:
-        ecspresso();
-        break;
-    case 2:
-        lungo();
-        break;
-    case 3:
-        doppio();
-        break;
-    case 4:
-        americano();
-        break;
-    case 5:
-        copuchino();
-        break;
-    case 6:
-        latte();
-        break;
-    case 7:
-        cacao();
-        break;
-    case 9:
-        scrt_menu();
-        break;
-    case 0:
-        break;
+    if (pD >= 1 && sS >= 4) {
+        printf("%d_%d_%d_%d_%d_%d_%d_%d", Des, pD, sS, dvS, pS, odT, dvT, peT);
+        puts(
+            "хай \n Выбери кофе на свой вкус\n У нас есть:\n 1.Экспрессо "
+            "50руб.\n "
+            "2.Лунго 50руб.\n 3.Доппио 100руб.\n 4.Американо 150руб.\n "
+            "5.Капучино "
+            "200руб.\n 6.Латте 200руб.\n 7.Какао 150руб.\n (Сделайте выбор)\n");
+        // printf("%d_%d_%d_%d", voda, coffe, beznal, money);
+        int b = 0;
+        setbuf(stdin, NULL);
+        scanf("%d", &b);
+        printf("Вы выбрали %d\n", b);
+        setbuf(stdin, NULL);
+        switch (b) {
+        case 1:
+            ecspresso();
+            break;
+        case 2:
+            lungo();
+            break;
+        case 3:
+            doppio();
+            break;
+        case 4:
+            americano();
+            break;
+        case 5:
+            copuchino();
+            break;
+        case 6:
+            latte();
+            break;
+        case 7:
+            cacao();
+            break;
+        case 9:
+            scrt_menu();
+            break;
+        case 0:
+            break;
+        }
+    } else {
+        puts("!!!Кофейный-автомат не работает!!!");
     }
 }
 
@@ -173,26 +183,31 @@ void oplata(int *vmoney)
 }
 void nalichka(int vmoney)
 {
-    int nal = 0, h = 0;
+    int nal = 0, h = 0, fgh = 0;
     for (; h != 1;) {
-
         setbuf(stdin, NULL);
         puts("Ваша сумма\n");
         scanf("%d", &nal);
-        scheot(nal);
-        if (nal >= vmoney) {
-            if (vmoney - nal == 0) {
-                h++;
-                money += nal;
+        fgh = nal / 10;
+        if (fgh * 10 == nal) {
+            scheot(nal);
+            if (nal >= vmoney) {
+                if (vmoney - nal == 0) {
+                    h++;
+                    money += nal;
+                } else {
+                    printf("Ваша сдача %d\n", nal - vmoney);
+                    h++;
+                    razmen(nal - vmoney);
+                    nal -= nal - vmoney;
+                    money += nal;
+                }
             } else {
-                printf("Ваша сдача %d\n", nal - vmoney);
-                h++;
-                nal -= nal - vmoney;
-                money += nal;
-                razmen(nal - vmoney);
+                printf("Не достаточно средств, пополните ещё %d\n",
+                       vmoney - nal);
             }
         } else {
-            printf("Не достаточно средств, пополните ещё %d\n", vmoney - nal);
+            puts("Не правильная сумма");
         }
     }
 }
@@ -205,7 +220,7 @@ void razmen(int zdacha)
             dvT -= 1;
         } else if (zdacha >= 1000) {
             zdacha -= 1000;
-            sS -= 1;
+            odT -= 1;
         } else if (zdacha >= 500) {
             zdacha -= 500;
             pS -= 1;
@@ -214,7 +229,7 @@ void razmen(int zdacha)
             dvS -= 1;
         } else if (zdacha >= 100) {
             zdacha -= 100;
-            dvS -= 1;
+            sS -= 1;
         } else if (zdacha >= 50) {
             zdacha -= 50;
             pD -= 1;
@@ -229,32 +244,32 @@ void razmen(int zdacha)
 void scheot(int kupuri)
 {
     for (int j = 0; j != 1;) {
-        if (kupuri == 0) {
-            j++;
-        } else if (kupuri <= 10) {
-            kupuri -= 10;
-            Des += 1;
-        } else if (kupuri <= 50) {
-            kupuri -= 50;
-            pD += 1;
-        } else if (kupuri <= 100) {
-            kupuri -= 100;
-            sS += 1;
-        } else if (kupuri <= 200) {
-            kupuri -= 200;
-            dvS += 1;
-        } else if (kupuri <= 500) {
-            kupuri -= 500;
-            pS += 1;
-        } else if (kupuri <= 1000) {
-            kupuri -= 1000;
-            odT += 1;
-        } else if (kupuri <= 2000) {
-            kupuri -= 2000;
-            dvT += 1;
-        } else if (kupuri <= 5000) {
+        if (kupuri == 5000) {
             kupuri -= 5000;
             peT += 1;
+        } else if (kupuri >= 2000) {
+            kupuri -= 2000;
+            dvT += 1;
+        } else if (kupuri >= 1000) {
+            kupuri -= 1000;
+            odT += 1;
+        } else if (kupuri >= 500) {
+            kupuri += 500;
+            pS += 1;
+        } else if (kupuri >= 200) {
+            kupuri -= 200;
+            dvS += 1;
+        } else if (kupuri >= 100) {
+            kupuri -= 100;
+            sS += 1;
+        } else if (kupuri >= 50) {
+            kupuri -= 50;
+            pD += 1;
+        } else if (kupuri >= 10) {
+            kupuri -= 10;
+            Des += 1;
+        } else if (kupuri == 0) {
+            j++;
         }
     }
 }
@@ -265,6 +280,7 @@ void beznaling(int vmoney)
     beznal += vmoney;
     return;
 }
+
 void scrt_menu()
 {
     int aka = 0;
