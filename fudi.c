@@ -1,4 +1,8 @@
 #include <stdio.h>
+
+// при вводе в меню допустим 8, 12 - программа закрывается
+// ставь пробелы после функций, где то ставишь , где то нет
+
 int voda = 20000;
 int coffe = 10000;
 int moloko = 5000;
@@ -13,6 +17,8 @@ int pS = 5;
 int odT = 5;
 int dvT = 5;
 int peT = 0;
+// пробелы для читаемости
+
 void ecspresso();
 void copuchino();
 void doppio();
@@ -20,8 +26,10 @@ void americano();
 void lungo();
 void latte();
 void cacao();
+
 void scrt_menu();
 void menu();
+
 void oplata();
 void beznaling();
 void nalichka();
@@ -29,7 +37,9 @@ void scheot();
 void razmen();
 void vozvrat();
 char vat();
+
 int main(void) { menu(); }
+
 void menu()
 {
     if (pD >= 1 && sS >= 4) {
@@ -71,8 +81,11 @@ void menu()
         case 9:
             scrt_menu();
             break;
+        // пустой case 0
         case 0:
             break;
+        // нет default:
+        //     break;
         }
     } else {
         puts("!!!Кофейный-автомат не работает!!!");
@@ -91,6 +104,7 @@ void ecspresso()
         puts("На этот вариант нет ресурсов\n");
     }
 }
+
 void copuchino()
 {
     if (voda >= 100 && coffe >= 25 && moloko >= 50) {
@@ -104,6 +118,7 @@ void copuchino()
         puts("На этот вариант нет ресурсов\n");
     }
 }
+
 void doppio()
 {
     if (voda >= 200 && coffe >= 50) {
@@ -116,6 +131,7 @@ void doppio()
         puts("На этот вариант нет ресурсов\n");
     }
 }
+
 void americano()
 {
     if (voda >= 250 && coffe >= 25) {
@@ -128,6 +144,7 @@ void americano()
         puts("На этот вариант нет ресурсов\n");
     }
 }
+
 void lungo()
 {
     if (voda >= 100 && coffe >= 25) {
@@ -140,6 +157,7 @@ void lungo()
         puts("На этот вариант нет ресурсов\n");
     }
 }
+
 void latte()
 {
     if (voda >= 100 && coffe >= 25 && moloko >= 100) {
@@ -153,6 +171,7 @@ void latte()
         puts("На этот вариант нет ресурсов\n");
     }
 }
+
 void cacao()
 {
     if (voda >= 200 && chocolad >= 50) {
@@ -165,6 +184,8 @@ void cacao()
         puts("На этот вариант нет ресурсов\n");
     }
 }
+
+// функция принимает указатель, а передаёшь просто число (176, 162 и т.д строки)
 void oplata(int *vmoney)
 {
     setbuf(stdin, NULL);
@@ -179,8 +200,11 @@ void oplata(int *vmoney)
     case 2:
         nalichka(vmoney);
         break;
+    // нет default:
+    //     break;
     }
 }
+
 void nalichka(int vmoney)
 {
     int nal = 0, h = 0, fgh = 0;
@@ -211,6 +235,7 @@ void nalichka(int vmoney)
         }
     }
 }
+
 void razmen(int zdacha)
 {
     for (int j = 0; j != 1;) {
@@ -241,6 +266,7 @@ void razmen(int zdacha)
         }
     }
 }
+
 void scheot(int kupuri)
 {
     for (int j = 0; j != 1;) {
@@ -273,11 +299,13 @@ void scheot(int kupuri)
         }
     }
 }
+
 void beznaling(int vmoney)
 {
 
     puts("Оплатите картой\n");
     beznal += vmoney;
+    // функция не возвращает значение (void)
     return;
 }
 
@@ -302,6 +330,8 @@ void scrt_menu()
         case 1:
             scrt_menu();
             break;
+        // нет default:
+        //     break;
         }
         break;
     case 2:
@@ -331,6 +361,8 @@ void scrt_menu()
         case 2:
             scrt_menu();
             break;
+        // нет default:
+        //     break;
         }
         break;
     case 3:
@@ -409,6 +441,8 @@ void scrt_menu()
         case 3:
             scrt_menu();
             break;
+         // нет default:
+        //     break;
         }
         break;
     case 4:
@@ -418,5 +452,7 @@ void scrt_menu()
     case 5:
         menu();
         break;
+     // нет default:
+     //     break;       
     }
 }
