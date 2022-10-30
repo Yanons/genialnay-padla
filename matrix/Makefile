@@ -3,16 +3,16 @@ FLAGS = -Wall -Werror -Wextra
 all: funcii run
 
 full: 
-	@${TAG} ${FLAGS} ocnova.c main.c -o funcii
+	${TAG} ${FLAGS} ocnova.c main.c -o full
 
 funcii: osnova.o main.o
-	$(TAG) osnova.o main.o -o funcii
+	${TAG} ${FLAGS} osnova.o main.o -o funcii
 
 osnova.o: osnova.c
-	$(TAG) -c osnova.c -o osnova.o
+	${TAG} ${FLAGS} -c osnova.c -o osnova.o
 
 main.o: main.c
-	$(TAG) -c main.c -o main.o
+	${TAG} ${FLAGS} -c main.c -o main.o
 		
 clean:
 	@rm -rf *.out matrix
