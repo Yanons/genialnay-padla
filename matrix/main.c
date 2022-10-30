@@ -4,10 +4,12 @@
 int main()
 {
     int a[SIZE] = {0};
-    int size = SIZE;
-    set_d(&a, size);
-    print_d(&a, size);
-    max_d(&a, size);
-    min_d(&a, size);
-    reserv_d(&a, size);
+    // зачем переменная, если у тебя дефайн?
+    //int size = SIZE;
+    // не во всех функциях мы меняем массив
+    set_d(&a, SIZE);
+    print_d(&a, SIZE);
+    max_d(&a, SIZE);
+    min_d(&a, SIZE);
+    reserv_d(&a, SIZE);
 }
