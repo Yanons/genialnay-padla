@@ -1,31 +1,45 @@
+// назови файл нормально))
 #include "osnova.h"
 #include <stdio.h>
+// этот SIZE нам не нужен в библиотеке, он пользовательский
 #define SIZE 10
 
-void set_d(int *a, int size)
+// при изменение чего то используем указатели
+// переменные должны как и функции именить логичное название
+void fill_array(int *array, const unsigned int size)
 {
-    for (int i = 0; i < size; i++) {
+    // советую привыкнуть к префиксной записи ++i
+    for (unsigned int i = 0; i < size; ++i) {
         setbuf(stdin, NULL);
-        scanf("%d", a + i);
+        scanf("%d", array + i);
     }
 }
-void print_d(int *a, int size)
+// 1 пробел после функции
+// если мы ничего не меняем в аргументе луяше явно это указать - const 
+// и не использовать зря указатели
+void print_array(const int a[], const unsigned int size)
 {
-    for (int i = 0; i < size; i++) {
-        printf("%d", a[i]);
+    // почему беззнаковый? потому что у нас не может быть отрицательный размер массива
+    for (unsigned int i = 0; i < size; ++i) {
+        // хотя бы пробел добавил для читаемости)
+        printf(" %d ", a[i]);
     }
     puts("\n");
 }
-void min_d(int *a, int size)
+// - // -
+// + функция возвращает минимальный элемент, а не выводит его(оставим это на пользователя)
+int min_d(const int a[], const unsigned int size)
 {
-    int min = 0;
-    for (int i = 0; i < size; i++) {
+    // разбирали уже, лучше брать первый элемент
+    int min = a[0];
+    for (unsigned int i = 0; i < size; i++) {
         if (min > a[i]) {
             min = a[i];
         }
     }
-    printf("%d\n", min);
+    return min;
 }
+// - // -
 void max_d(int *a, int size)
 {
     int max = 0;
@@ -36,13 +50,20 @@ void max_d(int *a, int size)
     }
     printf("%d\n", max);
 }
-void reserv_d(int *a, int size)
+
+// почти
+void reserv_d(int *array, const unsigned int size)
 {
-    int go[10];
-    go[0] = 0;
-    for (int i = 0, j = size - 1; j > -1 || i < 0; ++i, --j) {
-        go[j] = a[i];
+    if(size % 2 = 0) {
+        // разбери
+        int tmp = array[0];
+    for (int i = 0, j = size - 1; i < size / 2; ++i, --j) {
+        array[i] = array[j];
+        array[j] = tmp;
+        tmp = array[i + 1];
     }
-    puts("\n");
-    print_d(go, size);
+    } else {
+       // допиши , если размер нечётный и понял
+    }
+
 }
