@@ -2,11 +2,18 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-void fill_array(int *array, const unsigned int size)
+void fill_array(int *array, int *tu_array, const unsigned int size)
 {
+    puts("первый массив");
     for (unsigned int i = 0; i < size; ++i) {
         setbuf(stdin, NULL);
         scanf("%d", array + i);
+        setbuf(stdin, NULL);
+    }
+    puts("второй массив");
+    for (unsigned int i = 0; i < size; ++i) {
+        setbuf(stdin, NULL);
+        scanf("%d", tu_array + i);
         setbuf(stdin, NULL);
     }
 }
@@ -57,5 +64,23 @@ void reserv_d(int *array, const unsigned int size)
             array[j] = go;
             go = array[i + 1];
         }
+    }
+}
+void sravnenie(int *array, int *tu_array, const unsigned int size)
+{
+    puts("Сравнение");
+    int oshibka = 0;
+    // int massiv1 = array[0];
+    // int massiv2 = tu_array[0];
+    for (unsigned int i = 0; i < size; ++i) {
+        if (array[i] == tu_array[i]) {
+        } else {
+            oshibka += 1;
+        }
+    }
+    if (oshibka > 0) {
+        printf("Эти массивы разняться на %d индекса", oshibka);
+    } else {
+        puts("\nСхожи на все 100");
     }
 }

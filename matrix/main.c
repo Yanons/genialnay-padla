@@ -4,9 +4,11 @@
 int main()
 {
     int array[SIZE] = {0};
-    fill_array(&array, SIZE);
+    int tu_array[SIZE] = {0};
+    fill_array(&array, &tu_array, SIZE);
     print_d(array, SIZE);
     max_d(array, SIZE);
     min_d(array, SIZE);
+    sravnenie(array, tu_array, SIZE);
     reserv_d(&array, SIZE);
 }

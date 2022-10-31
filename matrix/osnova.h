@@ -5,6 +5,7 @@ void fill_array();
 void print_d(const int array[], const unsigned int size);
 int min_d(const int array[], const unsigned int size);
 int max_d(const int array[], const unsigned int size);
+void sravnenie();
 void reserv_d();
 
 #endif // _OSNOVA_H_
