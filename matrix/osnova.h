@@ -1,5 +1,3 @@
-#include <stdio.h>
-#include <stdlib.h>
 #ifndef _OSNOVA_H_
 #define _OSNOVA_H_
 
@@ -9,4 +7,4 @@ int min_d(const int array[], const unsigned int size);
 int max_d(const int array[], const unsigned int size);
 void reserv_d();
 
-#endif
+#endif // _OSNOVA_H_
