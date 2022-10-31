@@ -2,47 +2,58 @@
 #include <stdio.h>
 #define SIZE 10
 
-void set_d(int *a, int size)
+void fill_array(int *array, const unsigned int size)
 {
-    for (int i = 0; i < size; i++) {
+    for (unsigned int i = 0; i < size; ++i) {
         setbuf(stdin, NULL);
-        scanf("%d", a + i);
+        scanf("%d", array + i);
+        setbuf(stdin, NULL);
     }
 }
-void print_d(int *a, int size)
+void print_d(const int array[], const unsigned int size)
 {
-    for (int i = 0; i < size; i++) {
-        printf("%d", a[i]);
+    for (unsigned int i = 0; i < size; ++i) {
+        printf(" %d ", array[i]);
     }
     puts("\n");
 }
-void min_d(int *a, int size)
+int min_d(const int array[], const unsigned int size)
 {
-    int min = 0;
-    for (int i = 0; i < size; i++) {
-        if (min > a[i]) {
-            min = a[i];
+    int min = array[0];
+    for (unsigned int i = 1; i < size; ++i) {
+        if (min > array[i]) {
+            min = array[i];
         }
     }
-    printf("%d\n", min);
+    return min;
 }
-void max_d(int *a, int size)
+int max_d(const int array[], const unsigned int size)
 {
-    int max = 0;
-    for (int i = 0; i < size; i++) {
-        if (max < a[i]) {
-            max = a[i];
+    int max = array[0];
+    for (unsigned int i = 1; i < size; ++i) {
+        if (max < array[i]) {
+            max = array[i];
         }
     }
-    printf("%d\n", max);
+    return max;
 }
-void reserv_d(int *a, int size)
+void reserv_d(int *array, const unsigned int size)
 {
-    int go[10];
-    go[0] = 0;
-    for (int i = 0, j = size - 1; j > -1 || i < 0; ++i, --j) {
-        go[j] = a[i];
+    if (size % 2 == 0) {
+        int go = array[0];
+        for (unsigned int i = 0, j = size - 1; i < size / 2; ++i, --j) {
+            array[i] = array[j];
+            array[j] = go;
+            go = array[i + 1];
+        }
+    } else {
+        int go = array[0];
+        for (unsigned int i = 0, j = size - 1; i < size / 2 + 1; ++i, --j) {
+            array[i] = array[j];
+            array[j] = go;
+            go = array[i + 1];
+        }
+        puts("\n");
+        print_d(array, size);
     }
-    puts("\n");
-    print_d(go, size);
 }

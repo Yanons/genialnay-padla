@@ -2,9 +2,6 @@ TAG = gcc
 FLAGS = -Wall -Werror -Wextra
 all: funcii run
 
-full: 
-	${TAG} ${FLAGS} ocnova.c main.c -o full
-
 funcii: osnova.o main.o
 	${TAG} ${FLAGS} osnova.o main.o -o funcii
 
@@ -15,7 +12,8 @@ main.o: main.c
 	${TAG} ${FLAGS} -c main.c -o main.o
 		
 clean:
-	@rm -rf *.out matrix
+	@rm -rf *.out funcii
+	@rm -rf *.o funcii
 
 run:
 	@./funcii

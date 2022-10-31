@@ -3,11 +3,10 @@
 #define SIZE 10
 int main()
 {
-    int a[SIZE] = {0};
-    int size = SIZE;
-    set_d(&a, size);
-    print_d(&a, size);
-    max_d(&a, size);
-    min_d(&a, size);
-    reserv_d(&a, size);
+    int array[SIZE] = {0};
+    fill_array(&array, SIZE);
+    print_d(array, SIZE);
+    max_d(array, SIZE);
+    min_d(array, SIZE);
+    reserv_d(&array, SIZE);
 }
