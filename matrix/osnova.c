@@ -50,37 +50,22 @@ int max_d(const int array[], const unsigned int size)
 
 void reserv_d(int *array, const unsigned int size)
 {
-    if (size % 2 == 0) {
-        int go = array[0];
-        for (unsigned int i = 0, j = size - 1; i < size / 2; ++i, --j) {
-            array[i] = array[j];
-            array[j] = go;
-            go = array[i + 1];
-        }
-    } else {
-        int go = array[0];
-        for (unsigned int i = 0, j = size - 1; i < size / 2 + 1; ++i, --j) {
-            array[i] = array[j];
-            array[j] = go;
-            go = array[i + 1];
-        }
+
+    int go = array[0];
+    for (unsigned int i = 0, j = size - 1; i < size / 2; ++i, --j) {
+        array[i] = array[j];
+        array[j] = go;
+        go = array[i + 1];
     }
 }
-void sravnenie(int *array, int *tu_array, const unsigned int size)
+
+int sravnenie(const int array[], const int tu_array[], const unsigned int size,
+              const unsigned int dize)
 {
-    puts("Сравнение");
-    int oshibka = 0;
-    // int massiv1 = array[0];
-    // int massiv2 = tu_array[0];
-    for (unsigned int i = 0; i < size; ++i) {
-        if (array[i] == tu_array[i]) {
-        } else {
-            oshibka += 1;
-        }
-    }
-    if (oshibka > 0) {
-        printf("Эти массивы разняться на %d индекса", oshibka);
+    // for (unsigned int i = 0; i < size; ++i) {
+    if (array[dize] != tu_array[size]) {
+        return 0;
     } else {
-        puts("\nСхожи на все 100");
+        return 1;
     }
 }

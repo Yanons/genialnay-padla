@@ -1,6 +1,8 @@
 #include "osnova.h"
 #include <stdio.h>
 #define SIZE 10
+#define DIZE 10
+
 int main()
 {
     int array[SIZE] = {0};
@@ -9,6 +11,6 @@ int main()
     print_d(array, SIZE);
     max_d(array, SIZE);
     min_d(array, SIZE);
-    sravnenie(array, tu_array, SIZE);
+    sravnenie(array, tu_array, SIZE, DIZE);
     reserv_d(&array, SIZE);
 }
