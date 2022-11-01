@@ -54,12 +54,25 @@ void reserv_d(int *array, const unsigned int size)
 
 int sravnenie(const int array[], const int tu_array[], const unsigned int size)
 {
+    int res = 1;
     for (unsigned int i = 0; i < size; ++i) {
         if (array[i] != tu_array[i]) {
-            return 0;
-        } else {
-            return 1;
+            res = 0;
+            break;
         }
     }
-    return 0;
+    return res;
+}
+
+void bubble_sort(int *array, const unsigned int size)
+{
+    for (unsigned int i = 0; i < size - 1; ++i) {
+        for (unsigned int j = (size - 1); j > 0; --j) {
+            if (array[j - 1] > array[j]) {
+                int tmp = array[j - 1];
+                array[j - 1] = array[j];
+                array[j] = tmp;
+            }
+        }
+    }
 }

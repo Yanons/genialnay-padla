@@ -11,6 +11,8 @@ int main()
     print_d(array, SIZE);
     max_d(array, SIZE);
     min_d(array, SIZE);
-    sravnenie(array, tu_array, SIZE);
+    bubble_sort(tu_array, SIZE);
+    print_d(tu_array, SIZE);
+    printf("srav = %s\n", sravnenie(array, tu_array, SIZE) ? "True" : "False");
     reserv_d(array, SIZE); //
 }

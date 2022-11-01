@@ -7,5 +7,5 @@ int min_d(const int array[], const unsigned int size);
 int max_d(const int array[], const unsigned int size);
 void reserv_d(int *array, const unsigned int size);
 int sravnenie(const int array[], const int tu_array[], const unsigned int size);
-
+void bubble_sort(int *array, const unsigned int size);
 #endif // _OSNOVA_H_
