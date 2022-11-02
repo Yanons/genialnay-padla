@@ -76,15 +76,12 @@ void bubble_sort(int *array, const unsigned int size)
     }
 }
 
-int double_index(const int array[], const unsigned int size)
+int double_index(const int array[], const unsigned int size, const int chislo)
 {
-    int min = 0, mid = size / 2 - 1, max = size, chislo = 0;
+    int min = 0, mid = size / 2 - 1, max = size;
     unsigned int schet = 0;
-    setbuf(stdin, NULL);
-    scanf("%d", &chislo);
     while (min <= max) {
-        ++schet;
-        puts("-");
+
         if (chislo < array[mid]) {
             mid -= mid / 2;
             if (chislo == array[mid + 1] || chislo == array[mid - 1]) {
@@ -101,6 +98,40 @@ int double_index(const int array[], const unsigned int size)
         if (schet >= size) {
             return 0;
         }
+        puts("-");
+        ++schet;
     }
+    printf("%d", schet);
+    return 0;
+}
+void rAndom(int *array, const unsigned int size)
+{
+    for (unsigned int i = 0; i < size - 1; ++i) {
+        array[i] = 0 + rand() % (size - 0 + 1);
+    }
+}
+void swap_mass(int *array_1, int *array_2, const unsigned size)
+{
+    int tmp = 0;
+    for (unsigned int i = 0; i < size - 1; ++i) {
+        tmp = array_1[i];
+        array_1[i] = array_2[i];
+        array_2[i] = tmp;
+    }
+}
+int sum_chisla(int a)
+{
+    int b = 0, c = 0;
+    int summ = 0;
+    while (c != 1) {
+        b = a;
+        a /= 10;
+        summ += b - a * 10;
+        if (a <= 9) {
+            summ += a;
+            ++c;
+        }
+    }
+    printf("%d\n", summ);
     return 0;
 }
