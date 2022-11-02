@@ -7,7 +7,6 @@ void fill_array(int *array, const unsigned int size)
     for (unsigned int i = 0; i < size; ++i) {
         setbuf(stdin, NULL);
         scanf("%d", array + i);
-        setbuf(stdin, NULL);
     }
 }
 
@@ -75,4 +74,33 @@ void bubble_sort(int *array, const unsigned int size)
             }
         }
     }
+}
+
+int double_index(const int array[], const unsigned int size)
+{
+    int min = 0, mid = size / 2 - 1, max = size, chislo = 0;
+    unsigned int schet = 0;
+    setbuf(stdin, NULL);
+    scanf("%d", &chislo);
+    while (min <= max) {
+        ++schet;
+        puts("-");
+        if (chislo < array[mid]) {
+            mid -= mid / 2;
+            if (chislo == array[mid + 1] || chislo == array[mid - 1]) {
+                return mid;
+            }
+        } else if (chislo > array[mid]) {
+            mid += mid / 2;
+            if (chislo == array[mid - 1] || chislo == array[mid + 1]) {
+                return mid;
+            }
+        } else {
+            return mid;
+        }
+        if (schet >= size) {
+            return 0;
+        }
+    }
+    return 0;
 }
