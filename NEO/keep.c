@@ -2,6 +2,7 @@
 #include <math.h>
 #include <stdio.h>
 #include <stdlib.h>
+
 matrix_t create_matrix(const int rows, const int cols) //создание матрицы
 {
     matrix_t neo;
@@ -13,6 +14,7 @@ matrix_t create_matrix(const int rows, const int cols) //создание мат
     }
     return neo;
 }
+
 void printf_matrix(matrix_t *matrix) //ввывод матрицы
 {
     for (int i = 0; i < matrix->rows; ++i) {
@@ -30,6 +32,7 @@ void remove_matrix(matrix_t *matrix) //очистка матрицы
     }
     free(matrix->matrix);
 }
+
 void scanf_matrix(matrix_t *matrix) //заполнение матрицы
 {
     double n = 0;
@@ -40,6 +43,7 @@ void scanf_matrix(matrix_t *matrix) //заполнение матрицы
         }
     }
 }
+
 void fill_matrix(matrix_t *matrix_1)
 {
     double n = 1;
@@ -52,6 +56,7 @@ void fill_matrix(matrix_t *matrix_1)
         }
     }
 }
+
 matrix_t mult_number(matrix_t *matrix, int ti) //умножение на число
 {
     matrix_t neo = create_matrix(matrix->rows, matrix->cols);
@@ -62,6 +67,7 @@ matrix_t mult_number(matrix_t *matrix, int ti) //умножение на чис�
     }
     return neo;
 }
+
 int eq_matrix(matrix_t *one, matrix_t *two) //сравнение матриц
 {
     int res = 0;
@@ -90,6 +96,7 @@ int eq_size(matrix_t *one, matrix_t *two) //сравнение строк со �
     }
     return res;
 }
+
 matrix_t sub_matrix(matrix_t *matrix_1, matrix_t *matrix_2)
 {
     matrix_t neo;
@@ -104,6 +111,7 @@ matrix_t sub_matrix(matrix_t *matrix_1, matrix_t *matrix_2)
     }
     return neo;
 }
+
 matrix_t sum_matrix(matrix_t *matrix_1, matrix_t *matrix_2)
 {
     matrix_t neo;
@@ -118,6 +126,7 @@ matrix_t sum_matrix(matrix_t *matrix_1, matrix_t *matrix_2)
         return neo;
     }
 }
+
 matrix_t mult_matrix(matrix_t *matrix_1, matrix_t *matrix_2)
 {
     int rows = matrix_1->rows;
@@ -136,6 +145,7 @@ matrix_t mult_matrix(matrix_t *matrix_1, matrix_t *matrix_2)
     }
     return neo;
 }
+
 matrix_t transpose(matrix_t *matrix)
 {
     int imp = 0;
@@ -183,8 +193,7 @@ double determinant(matrix_t *matrix)
             det = (matrix->matrix[0][0] * matrix->matrix[1][1]) -
                   (matrix->matrix[1][0] * matrix->matrix[0][1]);
         } else if (matrix->rows > 2) {
-            matrix_t neo = create_matrix(matrix->cols, matrix->rows);
-            for (int i = 1; i < matrix->cols; ++i) {
+            for (int i = 1; i <= matrix->cols; ++i) {
                 matrix_t neo = minor_matrix(matrix, 0, i - 1);
                 det += pow(-1, 1 + (double)i) * matrix->matrix[0][i - 1] *
                        determinant(&neo);
@@ -193,6 +202,7 @@ double determinant(matrix_t *matrix)
         }
     }
 }
+
 matrix_t cals_complements(matrix_t *matrix)
 {
     matrix_t neo;
@@ -205,9 +215,9 @@ matrix_t cals_complements(matrix_t *matrix)
             matrix_t tmp;
             for (int i = 0; i < neo.rows; ++i) {
                 for (int j = 0; j < neo.cols; ++j) {
-                    tmp = minor_matrix(&neo, i, j);
+                    tmp = minor_matrix(&matrix, i, j);
                     neo.matrix[i][j] =
-                        pow(-1, (i + 1) + (j + 1) * determinant(&tmp));
+                        pow(-1, (i + 1) + (j + 1)) * determinant(&tmp);
                     remove_matrix(&tmp);
                 }
             }
