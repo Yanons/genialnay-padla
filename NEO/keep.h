@@ -18,9 +18,8 @@ matrix_t sub_matrix(matrix_t *massiv_1, matrix_t *massiv_2);  //
 matrix_t mult_matrix(matrix_t *massiv_1, matrix_t *massiv_2); //
 matrix_t transpose(matrix_t *massiv_1);
 matrix_t minor_matrix(matrix_t *massiv_1, const int i, const int j);
-void cals_cmplements(matrix_t *massiv_1);
+matrix_t cals_complements(matrix_t *massiv_1);
 double determinant(matrix_t *massiv_1);
 matrix_t inverse_matrix(matrix_t *massiv_1);
 void fill_matrix(matrix_t *matrix_1);
-
 #endif // _KEEP_H

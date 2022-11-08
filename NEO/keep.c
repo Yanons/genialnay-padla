@@ -1,4 +1,5 @@
 #include "keep.h"
+#include <math.h>
 #include <stdio.h>
 #include <stdlib.h>
 matrix_t create_matrix(const int rows, const int cols) //создание матрицы
@@ -172,7 +173,60 @@ matrix_t minor_matrix(matrix_t *matrix, const int i, const int j)
     }
     return neo;
 }
-
-void cals_complements(matrix_t *matrix) {}
-double determinant(matrix_t *matrix) {}
-matrix_t inverse_matrix(matrix_t *matrix) {}
+double determinant(matrix_t *matrix)
+{
+    double det;
+    if (matrix->rows == matrix->cols) {
+        if (matrix->cols != 1) {
+            det = matrix->matrix[0][0];
+        } else if (matrix->cols == 2) {
+            det = (matrix->matrix[0][0] * matrix->matrix[1][1]) -
+                  (matrix->matrix[1][0] * matrix->matrix[0][1]);
+        } else if (matrix->rows > 2) {
+            matrix_t neo = create_matrix(matrix->cols, matrix->rows);
+            for (int i = 1; i < matrix->cols; ++i) {
+                matrix_t neo = minor_matrix(matrix, 0, i - 1);
+                det += pow(-1, 1 + (double)i) * matrix->matrix[0][i - 1] *
+                       determinant(&neo);
+                remove_matrix(&neo);
+            }
+        }
+    }
+}
+matrix_t cals_complements(matrix_t *matrix)
+{
+    matrix_t neo;
+    if (matrix->cols == matrix->rows) {
+        if (matrix->rows == 1) {
+            neo = create_matrix(1, 1);
+            neo.matrix[0][0] = 1;
+        } else {
+            neo = create_matrix(matrix->cols, matrix->rows);
+            matrix_t tmp;
+            for (int i = 0; i < neo.rows; ++i) {
+                for (int j = 0; j < neo.cols; ++j) {
+                    tmp = minor_matrix(&neo, i, j);
+                    neo.matrix[i][j] =
+                        pow(-1, (i + 1) + (j + 1) * determinant(&tmp));
+                    remove_matrix(&tmp);
+                }
+            }
+        }
+    }
+    return neo;
+}
+matrix_t inverse_matrix(matrix_t *matrix)
+{
+    matrix_t neo;
+    if (matrix->cols == matrix->rows) {
+        double det = determinant(matrix);
+        if (det != 0) {
+            matrix_t tmp = cals_complements(matrix);
+            matrix_t tmp_2 = transpose(&tmp);
+            neo = mult_number(&tmp_2, 1 / det);
+            remove_matrix(&tmp);
+            remove_matrix(&tmp_2);
+        }
+    }
+    return neo;
+}
