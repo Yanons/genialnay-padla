@@ -4,11 +4,11 @@
 
 int main()
 {
-    int a = 456;
-    // int array[SIZE] = {0};
-    // int tu_array[SIZE] = {0};
-    // fill_array(array, SIZE);
-    //  fill_array(tu_array, SIZE);
+    // int a = 456;
+    int array[SIZE] = {0};
+    int tu_array[SIZE] = {0};
+    fill_array(array, SIZE);
+    fill_array(tu_array, SIZE);
     //  print_d(array, SIZE);
     //  max_d(array, SIZE);
     //  min_d(array, SIZE);
@@ -21,10 +21,10 @@ int main()
     // print_d(array, SIZE);
     // print_d(tu_array, SIZE);
     // print_d(array, SIZE);
-    // bubble_sort(array, SIZE);
+    bubble_sort(array, SIZE);
     // double_index(array, SIZE, a);
     // swap_mass(array, tu_array, SIZE);
-    // print_d(array, SIZE);
+    print_d(array, SIZE);
     // print_d(tu_array, SIZE);
-    sum_chisla(a);
+    // sum_chisla(a);
 }
