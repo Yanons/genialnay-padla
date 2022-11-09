@@ -1,6 +1,6 @@
 TAG = gcc
 FLAGS = -Wall -Werror -Wextra
-all: funcii run
+all:  funcii idinahui run
 
 funcii: osnova.o main.o
 	${TAG} ${FLAGS} osnova.o main.o -o funcii
@@ -16,6 +16,8 @@ clean:
 
 run:
 	@./funcii
+idinahui:
+	@clear
 
 
 
