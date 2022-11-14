@@ -8,7 +8,6 @@ int main()
     mass_t array = create(all);
     mass_t tu_array = create(all);
     mass_t thee_array = create(all);
-    mass_t fo_array = create(all);
     fill(&array);
     fill(&tu_array);
     int mass_1 = summ(&array);
@@ -18,7 +17,9 @@ int main()
     match(&array, &tu_array);
     print_mass(&array);
     print_mass(&tu_array);
-    unions(&array, &tu_array, &thee_array, &fo_array);
+    unions(&array, &tu_array, &thee_array);
+    bubble_sort(&thee_array);
     print_mass(&thee_array);
-    print_mass(&fo_array);
+    int mid = sred(&thee_array);
+    printf("%d", mid);
 }

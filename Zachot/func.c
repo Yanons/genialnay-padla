@@ -48,10 +48,7 @@ void match(mass_t *array, mass_t *tu_array)
     puts("\n");
 }
 
-void unions(mass_t *array, mass_t *tu_array, mass_t *thee_array,
-            mass_t *fo_array)
-{
-}
+void unions(mass_t *array, mass_t *tu_array, mass_t *thee_array) {}
 void bubble_sort(mass_t *array)
 {
     int all = array->all;
@@ -64,4 +61,13 @@ void bubble_sort(mass_t *array)
             }
         }
     }
+}
+int sred(mass_t *thee_array)
+{
+    int summ = 0;
+    for (int i = 0; i < thee_array->all; ++i) {
+        summ += thee_array->mass[i];
+    }
+    summ /= thee_array->all;
+    return summ;
 }
