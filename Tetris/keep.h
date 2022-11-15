@@ -21,5 +21,6 @@ void left(matrix_t *figure, matrix_t *tmp, matrix_t *pole);
 void right(matrix_t *figure, matrix_t *tmp, matrix_t *pole);
 void down(matrix_t *figure, matrix_t *tmp, matrix_t *pole);
 void copy(matrix_t *figure, matrix_t *tmp);
+int end_line(matrix_t *figure, matrix_t *pole);
 
 #endif // _KEEP_H

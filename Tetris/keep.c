@@ -90,28 +90,79 @@ void randoms(matrix_t *figure)
 
 void left(matrix_t *figure, matrix_t *tmp, matrix_t *pole)
 {
-    for (int j = 0; j < figure->width; ++j) {
-        figure->matrix[1][j] = figure->matrix[1][j] - 1;
-        pole->matrix[tmp->matrix[0][j]][tmp->matrix[1][j]] = ' ';
-        pole->matrix[figure->matrix[0][j]][figure->matrix[1][j]] = '*';
+    int a = 0;
+    for (int j = 0; j < 1; ++j) {
+        if (pole->matrix[figure->matrix[0][j]][figure->matrix[1][j] - 1] !=
+                '|' &&
+            pole->matrix[figure->matrix[0][j]][figure->matrix[1][j] - 1] !=
+                '*') {
+        } else {
+            a = 1;
+        }
+    }
+    if (a != 1) {
+        for (int j = 0; j < figure->width; ++j) {
+            figure->matrix[1][j] = figure->matrix[1][j] - 1;
+            pole->matrix[tmp->matrix[0][j]][tmp->matrix[1][j]] = ' ';
+        }
+        for (int j = 0; j < figure->width; ++j) {
+            pole->matrix[figure->matrix[0][j]][figure->matrix[1][j]] = '*';
+        }
     }
 }
-
 void right(matrix_t *figure, matrix_t *tmp, matrix_t *pole)
 {
-    for (int j = 0; j < figure->width; ++j) {
-        figure->matrix[1][j] = figure->matrix[1][j] + 1;
-        pole->matrix[tmp->matrix[0][j]][tmp->matrix[1][j]] = ' ';
-        pole->matrix[figure->matrix[0][j]][figure->matrix[1][j]] = '*';
+    int a = 0;
+    for (int j = 3; j < figure->width; ++j) {
+        if (pole->matrix[figure->matrix[0][j]][figure->matrix[1][j] + 1] !=
+                '|' &&
+            pole->matrix[figure->matrix[0][j]][figure->matrix[1][j] + 1] !=
+                '*') {
+        } else {
+            a = 1;
+        }
+    }
+    if (a != 1) {
+        for (int j = 0; j < figure->width; ++j) {
+            figure->matrix[1][j] = figure->matrix[1][j] + 1;
+            pole->matrix[tmp->matrix[0][j]][tmp->matrix[1][j]] = ' ';
+        }
+        for (int j = 0; j < figure->width; ++j) {
+            pole->matrix[figure->matrix[0][j]][figure->matrix[1][j]] = '*';
+        }
     }
 }
 
 void down(matrix_t *figure, matrix_t *tmp, matrix_t *pole)
 {
+    int a = 0;
+    int max = 0;
     for (int j = 0; j < figure->width; ++j) {
-        figure->matrix[0][j] = figure->matrix[0][j] + 1;
-        pole->matrix[tmp->matrix[0][j]][tmp->matrix[1][j]] = ' ';
-        pole->matrix[figure->matrix[0][j]][figure->matrix[1][j]] = '*';
+        if (max < figure->matrix[0][j]) {
+            max = figure->matrix[0][j];
+        }
+    }
+    for (int j = 0; j < figure->width; ++j) {
+        if (max == figure->matrix[0][j]) {
+
+            if (pole->matrix[figure->matrix[0][j] + 1][figure->matrix[1][j]] !=
+                    '_' &&
+                pole->matrix[figure->matrix[0][j] + 1][figure->matrix[1][j]] !=
+                    '*') {
+            } else {
+                a = 1;
+            }
+        }
+    }
+
+    if (a != 1) {
+        for (int j = 0; j < figure->width; ++j) {
+            figure->matrix[0][j] = figure->matrix[0][j] + 1;
+            pole->matrix[tmp->matrix[0][j]][tmp->matrix[1][j]] = ' ';
+        }
+        for (int j = 0; j < figure->width; ++j) {
+            pole->matrix[figure->matrix[0][j]][figure->matrix[1][j]] = '*';
+        }
     }
 }
 
@@ -119,25 +170,46 @@ void copy(matrix_t *figure, matrix_t *tmp)
 {
     for (int j = 0; j < 2; ++j) {
         for (int i = 0; i < 4; ++i) {
-            if (j == 0) {
-                tmp->matrix[j][i] = figure->matrix[j][i];
+            tmp->matrix[j][i] = figure->matrix[j][i];
+        }
+    }
+}
+int end_line(matrix_t *figure, matrix_t *pole)
+{
+    int a = 0, max = 0;
+    for (int j = 0; j < figure->width; ++j) {
+        if (max < figure->matrix[0][j]) {
+            max = figure->matrix[0][j];
+        }
+    }
+    for (int j = 0; j < figure->width; ++j) {
+        if (max == figure->matrix[0][j]) {
+
+            if (pole->matrix[figure->matrix[0][j] + 1][figure->matrix[1][j]] !=
+                    '_' &&
+                pole->matrix[figure->matrix[0][j] + 1][figure->matrix[1][j]] !=
+                    '*') {
+            } else {
+                a = 1;
             }
         }
     }
+
+    return a;
 }
 
 void I(matrix_t *figure)
 {
-    figure->matrix[0][0] = 1;
+    figure->matrix[0][0] = 2;
     figure->matrix[1][0] = 3;
 
-    figure->matrix[0][1] = 1;
+    figure->matrix[0][1] = 2;
     figure->matrix[1][1] = 4;
 
-    figure->matrix[0][2] = 1;
+    figure->matrix[0][2] = 2;
     figure->matrix[1][2] = 5;
 
-    figure->matrix[0][3] = 1;
+    figure->matrix[0][3] = 2;
     figure->matrix[1][3] = 6;
 }
 

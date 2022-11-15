@@ -16,11 +16,16 @@ int main()
     matrix_t tmp;
     pole = holst(width, length);
     figure = pole_figure(F_width, F_length);
-    pole = pole_figure(F_width, F_length);
+    tmp = pole_figure(F_width, F_length);
     randoms(&figure);
     new_figura(&figure, &pole);
     print_pole(&pole);
     while (a != 1) {
+        // sleep(0.5);
+        // copy(&figure, &tmp);
+        // down(&figure, &tmp, &pole);
+        system("clear");
+        print_pole(&pole);
         char go = getchar();
         switch (go) {
         case 83: //низ
@@ -36,12 +41,19 @@ int main()
             right(&figure, &tmp, &pole);
             break;
         case 81:
-
             a = 1;
             break;
+        default:
+            break;
         }
-        sleep(1);
-        copy(&figure, &tmp);
-        down(&figure, &tmp, &pole);
+        int a = end_line(&figure, &pole);
+        if (a == 1) {
+            randoms(&figure);
+            new_figura(&figure, &pole);
+        }
+        //  sleep(0.5);
+        //  copy(&figure, &tmp);
+        //  down(&figure, &tmp, &pole);
+        //  print_pole(&pole);
     }
 }
