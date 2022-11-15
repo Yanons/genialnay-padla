@@ -48,7 +48,33 @@ void match(mass_t *array, mass_t *tu_array)
     puts("\n");
 }
 
-void unions(mass_t *array, mass_t *tu_array, mass_t *thee_array) {}
+void unions(mass_t *array, mass_t *tu_array, mass_t *thee_array)
+{
+    int k = 0;
+    for (int i = 0; i < array->all; ++i) {
+        for (int j = 0; j < array->all; ++j) {
+            /*if (array->mass[i] == array->mass[j]) {
+                array->mass[j] -= 15;
+            }
+            if (tu_array->mass[i] == tu_array->mass[j]) {
+                tu_array->mass[j] -= 15;
+            }*/
+            if (array->mass[i] == tu_array->mass[j]) {
+                tu_array->mass[i] -= 15;
+                array->mass[j] -= 15;
+            }
+        }
+    }
+    for (int i = 0; i < array->all; ++i) {
+        if (array->mass[i] >= 0) {
+            thee_array->mass[k] = array->mass[i];
+        }
+        if (tu_array->mass[i] >= 0) {
+            thee_array->mass[thee_array->all - k] = tu_array->mass[i];
+        }
+        ++k;
+    }
+}
 void bubble_sort(mass_t *array)
 {
     int all = array->all;

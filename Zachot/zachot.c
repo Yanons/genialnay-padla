@@ -7,7 +7,7 @@ int main()
     // scanf("%d", &all);
     mass_t array = create(all);
     mass_t tu_array = create(all);
-    mass_t thee_array = create(all);
+    mass_t thee_array = create(all * 2);
     fill(&array);
     fill(&tu_array);
     int mass_1 = summ(&array);
@@ -18,8 +18,9 @@ int main()
     print_mass(&array);
     print_mass(&tu_array);
     unions(&array, &tu_array, &thee_array);
-    bubble_sort(&thee_array);
     print_mass(&thee_array);
+    bubble_sort(&thee_array);
+    // print_mass(&thee_array);
     int mid = sred(&thee_array);
     printf("%d", mid);
 }
