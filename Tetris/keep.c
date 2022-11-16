@@ -51,6 +51,14 @@ matrix_t pole_figure(const int F_width, const int F_length)
     return figure;
 }
 
+void remove_matrix(matrix_t *matrix) //очистка матрицы
+{
+    for (int i = 0; i < matrix->width; ++i) {
+        free(matrix->matrix[i]);
+    }
+    free(matrix->matrix);
+}
+
 void new_figura(matrix_t *figura, matrix_t *pole)
 {
     for (int j = 0; j < figura->width; ++j) {

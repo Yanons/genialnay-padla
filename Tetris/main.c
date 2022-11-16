@@ -56,4 +56,7 @@ int main()
         //  down(&figure, &tmp, &pole);
         //  print_pole(&pole);
     }
+    remove_matrix(&pole);
+    remove_matrix(&figure);
+    remove_matrix(&tmp);
 }

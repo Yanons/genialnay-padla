@@ -8,6 +8,7 @@ typedef struct {
 matrix_t holst(const int width, const int length);
 matrix_t print_pole(matrix_t *pole);
 matrix_t pole_figure(const int F_width, const int F_length);
+void remove_matrix(matrix_t *matrix);
 void new_figura(matrix_t *figura, matrix_t *pole);
 void I(matrix_t *figure);
 void J(matrix_t *figure);
