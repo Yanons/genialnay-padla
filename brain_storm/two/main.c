@@ -1,30 +1,29 @@
-#include <stdio.h>
+#include <stdio.h> //Ode To Billy Joe - Oscar Peterson
 #include <stdlib.h>
 int main()
 {
-    int a;
     int size = 0;
-    scanf("%c", &size);
+    scanf("%d", &size);
     char **matrix = (char **)calloc(size, sizeof(char *));
     for (int i = 0; i < size; ++i) {
-        matrix[i] = (char *)calloc(size, sizeof(char));
+        matrix[i] = (char *)calloc(size * 2, sizeof(char));
     }
     for (int i = 0; i < size; ++i) {
-        for (int j = 0; j < size; ++j) {
+        for (int j = 0; j < size * 2; ++j) {
             matrix[i][j] = ' ';
         }
     }
-    a = size / 2;
     for (int i = 0; i < size; ++i) {
-        matrix[i][a + i] = '*';
-        matrix[i][a - i] = '*';
+        matrix[i][size + i] = '*';
+
+        matrix[i][size - i] = '*';
     }
     for (int i = 0; i < size; ++i) {
-        puts("\n");
-        for (int j = 0; j < size; ++j) {
+        for (int j = 0; j < size * 2; ++j) {
             printf("%c", matrix[i][j]);
         }
-        }
+        puts("\n");
+    }
     for (int i = 0; i < size; ++i) {
         free(matrix[i]);
     }
