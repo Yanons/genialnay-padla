@@ -12,4 +12,5 @@ int summ(mass_t *array);
 void match(mass_t *array, mass_t *tu_array);
 void unions(mass_t *array, mass_t *tu_array, mass_t *thee_array);
 int sred(mass_t *thee_array);
+void remove_matrix(mass_t *mass);
 #endif

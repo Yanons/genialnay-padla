@@ -75,6 +75,11 @@ void unions(mass_t *array, mass_t *tu_array, mass_t *thee_array)
         ++k;
     }
 }
+void remove_matrix(mass_t *mass) //очистка матрицы
+{
+    free(mass);
+}
+
 void bubble_sort(mass_t *array)
 {
     int all = array->all;

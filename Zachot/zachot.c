@@ -23,4 +23,7 @@ int main()
     // print_mass(&thee_array);
     int mid = sred(&thee_array);
     printf("%d", mid);
+    remove_matrix(&array);
+    remove_matrix(&tu_array);
+    remove_matrix(&thee_array);
 }
