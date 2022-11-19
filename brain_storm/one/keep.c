@@ -42,10 +42,8 @@ void plenum_matrix(matrix_t *matrix)
                 ++num;
             }
             for (int j = 0 + y; j < cols - 1 - y; ++j) {
-                puts("-");
                 matrix->matrix[rows - 1 - x][j] = num;
                 ++num;
-                puts("+");
             }
             for (int i = rows - 1 - x; i > 0 + x; --i) {
                 matrix->matrix[i][cols - 1 - y] = num;
@@ -62,5 +60,4 @@ void plenum_matrix(matrix_t *matrix)
             ++a;
         }
     }
-    puts("----");
 }
