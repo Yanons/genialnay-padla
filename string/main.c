@@ -18,7 +18,20 @@ int main()
             ++tic;
         }
     }   
-    printf("%s",s_two);
+    printf("%s\n",s_two);
+    int sUm=0;
+    for(int i = 0;i<strlen(s_two);++i){
+        sUm += s_two[i] -48;
+    }
+    // int s_int = atoi(s_two);
+    // printf("%d\n",s_int);
+    // int e = 0;
+    // while (s_int > 0)  { бляяяяяяяяяяяяяяяяяяяяяяяя
+    //     sUm += s_int%10; я не навижу это наебалово с strtol и atoi кто их придумал?  проще -48 сделать и не ебаться
+    //     s_int /= 10;
+    //     //sUm = s_int-e;
+    // }
+    printf("%d",sUm);
     // char s_three[MAX];
     // char *end;
     // char id = 'l';
