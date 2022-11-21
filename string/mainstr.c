@@ -1,4 +1,4 @@
-#include <stdio.h>
+#include <stdio.h>  //Sunny - Oscar Peterson
 #include <stdlib.h> //034i31j98h10lgh745fds9
 #include <string.h>
 #define MAX 255
@@ -55,6 +55,7 @@ int main(int srgc, char **srgv)
         tmps = 0;
         puts("-\n");
     }
-
+    free(s_two);
+    free(tmp);
     exit(EXIT_SUCCESS);
 }
