@@ -14,7 +14,8 @@ int main(int srgc, char **srgv)
         int tic = 0;
         int tim = 0;
         int temp = 0;
-        for (int i = 0; i <= strlen(srgv[j]); ++i) {
+        int siz = strlen(srgv[j]);
+        for (int i = 0; i <= siz; ++i) {
             if ((srgv[j][i] > 47 && srgv[j][i] < 58) || srgv[j][i] == 46) {
                 s_two[tic] = srgv[j][i];
                 tmp[tim] = srgv[j][i];
@@ -25,9 +26,8 @@ int main(int srgc, char **srgv)
                     temp = 1;
                 }
             }
-            if (temp == 1 && (srgv[j][i] < 47 || srgv[j][i] > 58) &&
-                    srgv[j][i] != 46 ||
-                srgv[j][i] == 32) {
+            if (temp == 1 && srgv[j][i] != 46 &&
+                (srgv[j][i] < 47 || srgv[j][i] > 58 || srgv[j][i] == 32)) {
 
                 // printf("%ses-\n", tmp);
                 sscanf(tmp, "%lf", &tmps);
@@ -37,11 +37,12 @@ int main(int srgc, char **srgv)
                 tmps = 0;
                 tim = 0;
                 temp = 0;
-            } else if (temp == 0 && (srgv[j][i] < 47 || srgv[j][i] > 58) &&
-                           srgv[j][i] != 46 ||
-                       srgv[j][i] == 32) {
-                for (int i = 0; i < strlen(tmp); ++i) {
-                    sUm += tmp[i] - '0';
+            } else if (temp == 0 && srgv[j][i] != 46 &&
+                       (srgv[j][i] < 47 || srgv[j][i] == 32 ||
+                        srgv[j][i] > 58)) {
+                int size = strlen(tmp);
+                for (int g = 0; g < size; ++g) {
+                    sUm += tmp[g] - '0';
                 }
                 memset(tmp, '\0', strlen(tmp));
                 tim = 0;
