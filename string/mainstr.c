@@ -4,11 +4,12 @@
 #define MAX 255
 int main(int srgc, char**srgv){
     char *s_two;
-    int tic = 0;
     s_two = (char *)calloc(MAX, sizeof(char));
-    for(int i = 0;i<strlen(srgv[1]);++i){
-        if(srgv[1][i]>47&&srgv[1][i]<58){
-            s_two[tic]=srgv[1][i];
+    for(int j = 1;j<srgc;++j){
+        int tic = 0;
+        for(int i = 0;i<strlen(srgv[j]);++i){
+        if(srgv[j][i]>47&&srgv[j][i]<58){
+            s_two[tic]=srgv[j][i];
             ++tic;
         }
     }   
@@ -17,6 +18,8 @@ int main(int srgc, char**srgv){
     for(int i = 0;i<strlen(s_two);++i){
         sUm += s_two[i] -48;
     }
+    memset(s_two,'\0',strlen(s_two));
     printf("%d\n",sUm);
+    }
     exit(EXIT_SUCCESS);
 }
